@@ -1,11 +1,13 @@
 import gql from "graphql-tag";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {Button, Form} from "semantic-ui-react";
 import {useMutation} from '@apollo/client';
 import {useHistory} from "react-router-dom";
+import {AuthContext} from '../context/auth';
 
 function Register() {
 
+    const context = useContext(AuthContext);
     const history = useHistory();
     const [errors, setErrors] = useState({});
     const [values, setValues] = useState({
@@ -21,8 +23,8 @@ function Register() {
     
     const [addUser, {loading}] = useMutation(REGISTER_USER , {
         update(_, result) {
-            console.log(result);
-            history.push('/')
+            context.login(result.data.register);
+            history.push('/');
         },
         onError(err) {
             setErrors(err.graphQLErrors[0].extensions.errors);

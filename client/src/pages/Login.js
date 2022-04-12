@@ -1,10 +1,13 @@
 import gql from "graphql-tag";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {Button, Form} from "semantic-ui-react";
 import {useMutation} from '@apollo/client';
 import {useHistory} from "react-router-dom";
+import { AuthContext } from "../context/auth";
 
 function Login() {
+
+    const context = useContext(AuthContext);
 
     const history = useHistory();
     const [errors, setErrors] = useState({});
@@ -19,8 +22,8 @@ function Login() {
     
     const [loginUser, {loading}] = useMutation(LOGIN_USER , {
         update(_, result) {
-            console.log(result);
-            history.push('/')
+            context.login(result.data.login);
+            history.push('/');
         },
         onError(err) {
             setErrors(err.graphQLErrors[0].extensions.errors);
