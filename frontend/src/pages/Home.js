@@ -17,14 +17,13 @@ function Home() {
     if(data) {
         posts = data.getPosts;
     }
-
     return (
         <Grid columns={3}>
             <Grid.Row className="page-title">
                 <h1>Recent Posts</h1>
             </Grid.Row>
             <Grid.Row>
-                {user && (
+                {user && user.role == 2 && (
                     <Grid.Column>
                         <PostForm />
                     </Grid.Column>

@@ -3,27 +3,26 @@ import React, { useState, useContext } from "react";
 import {Button, Form} from "semantic-ui-react";
 import {useMutation} from '@apollo/client';
 import {useHistory} from "react-router-dom";
-import {AuthContext} from '../context/auth';
+import { AuthContext } from "../context/auth";
 
-function Register() {
+function Login() {
 
     const context = useContext(AuthContext);
+
     const history = useHistory();
     const [errors, setErrors] = useState({});
     const [values, setValues] = useState({
         username: '',
-        email: '',
         password: '',
-        confirmPassword: ''
     });
 
     const onChange = (event) => {
         setValues({...values,[event.target.name]: event.target.value});
     }
     
-    const [addUser, {loading}] = useMutation(REGISTER_USER , {
+    const [loginUser, {loading}] = useMutation(LOGIN_USER , {
         update(_, result) {
-            context.login(result.data.register);
+            context.login(result.data.login);
             history.push('/');
         },
         onError(err) {
@@ -34,7 +33,7 @@ function Register() {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        addUser();
+        loginUser();
     }
 
 
@@ -42,7 +41,7 @@ function Register() {
     return (
         <div className="form-container">
             <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ''}>
-                <h1>Register</h1>
+                <h1>Login</h1>
                 <Form.Input 
                     label="Username"
                     placeholder="Username.."
@@ -50,15 +49,6 @@ function Register() {
                     type="text"
                     value={values.username}
                     error={errors.username ? true : false}
-                    onChange={onChange}
-                />
-                 <Form.Input 
-                    label="Email"
-                    placeholder="Email.."
-                    name="email"
-                    type="email"
-                    value={values.email}
-                    error={errors.email ? true : false}
                     onChange={onChange}
                 />
                  <Form.Input 
@@ -70,17 +60,8 @@ function Register() {
                     error={errors.password ? true : false}
                     onChange={onChange}
                 />
-                 <Form.Input 
-                    label="Confirm Password"
-                    placeholder="Confirm Password.."
-                    name="confirmPassword"
-                    type="password"
-                    value={values.confirmPassword}
-                    error={errors.confirmPassword ? true : false}
-                    onChange={onChange}
-                />
                 <Button type="submit" primary>
-                    Register
+                    Login
                 </Button>
             </Form>
             {Object.keys(errors).length > 0 && (
@@ -96,28 +77,23 @@ function Register() {
     );
 }
 
-const REGISTER_USER = gql`
-  mutation register(
+const LOGIN_USER = gql`
+  mutation login(
     $username: String!
-    $email: String!
     $password: String!
-    $confirmPassword: String!
   ) {
-    register(
-      registerInput: {
+    login(
         username: $username
-        email: $email
         password: $password
-        confirmPassword: $confirmPassword
-      }
     ) {
       id
       email
       username
       createdAt
       token
+      role
     }
   }
 `;
 
-export default Register;
+export default Login;
