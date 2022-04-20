@@ -15,6 +15,7 @@ import Register from './pages/Register';
 import SinglePost from './pages/SinglePost';
 import RegisterUser from './pages/RegisterUser';
 import RegisterMeditator from './pages/RegisterMeditator';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <AuthRoute exact path='/register' component={Register} />
           <AuthRoute exact path='/register/user' component={RegisterUser} />
           <AuthRoute exact path='/register/meditator' component={RegisterMeditator} />
+          <Route exact path='/profile/:username' component={Profile} />
           <Route exact path="/posts/:postId" component={SinglePost} />
         </Container>
       </Router>
