@@ -19,7 +19,7 @@ function MenuBar() {
         as={Link}
         active={activeItem === user.username}
         onClick={handleItemClick}
-        to="/profile" >
+        to={`/profile/${user.username}`} >
       <div>
         <Image src='https://react.semantic-ui.com/images/avatar/large/molly.png' avatar />
         <span>{user.username}</span>

@@ -7,10 +7,9 @@ function Register() {
     const history = useHistory();
 
     return (
-        <Container style={{textAlign:"center",position: 'absolute', left: '50%', top: '50%',
-            transform: 'translate(-50%, -50%)'}}>
+        <Container style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
             <h1 style={{color:"black", fontSize: 35, marginBottom: 35}}>Who are you gonna be, wanderer?</h1>
-            <Grid doubling columns={2}>
+            <Grid doubling columns={2} centered>
                 <Grid.Column>
                     <Card
                     fluid
