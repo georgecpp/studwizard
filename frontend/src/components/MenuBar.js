@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 
 import { AuthContext } from '../context/auth';
@@ -16,11 +16,23 @@ function MenuBar() {
     <Menu pointing secondary size='massive' color='teal'>
       <Menu.Item
         name={user.username}
-        active
         as={Link}
-        to="/"
-      />
+        active={activeItem === user.username}
+        onClick={handleItemClick}
+        to="/profile" >
+      <div>
+        <Image src='https://react.semantic-ui.com/images/avatar/large/molly.png' avatar />
+        <span>{user.username}</span>
+      </div>
+      </Menu.Item>
       <Menu.Menu position='right'>
+        <Menu.Item
+          name='home'
+          active={activeItem === 'home'}
+          onClick={handleItemClick}
+          as={Link}
+          to="/"
+        />
         <Menu.Item
             name='logout'
             onClick={logout}
