@@ -7,7 +7,7 @@ import moment from "moment";
 import LikeButton from "../components/LikeButton";
 import { AuthContext } from "../context/auth";
 import DeleteButton from "../components/DeleteButton";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import MyPopup from "../util/MyPopup";
 
 function SinglePost(props) {
@@ -52,12 +52,14 @@ function SinglePost(props) {
                         <Image 
                         src='https://react.semantic-ui.com/images/avatar/large/molly.png'
                         size="small"
-                        float="right" />
+                        float="right" 
+                        as={Link}
+                        to={`/profile/${username}`}/>
                     </Grid.Column>
                     <Grid.Column width={10}>
                         <Card fluid>
                             <Card.Content>
-                                <Card.Header>{username}</Card.Header>
+                                <Card.Header as={Link} to={`/profile/${username}`}>{username}</Card.Header>
                                 <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
                                 <Card.Description>{body}</Card.Description>
                             </Card.Content>
