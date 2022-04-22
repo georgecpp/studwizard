@@ -44,13 +44,13 @@ function SinglePost(props) {
         postMarkup = <p>Loading post...</p>   
     }
     else {
-        const {id, body, createdAt, username, comments, likes, likeCount, commentCount} = data.getPost;
+        const {id, body, createdAt, username,userimg, comments, likes, likeCount, commentCount} = data.getPost;
         postMarkup = (
             <Grid>
                 <Grid.Row>
                     <Grid.Column width={2}>
                         <Image 
-                        src='https://react.semantic-ui.com/images/avatar/large/molly.png'
+                        src={userimg}
                         size="small"
                         float="right" 
                         as={Link}
@@ -61,7 +61,9 @@ function SinglePost(props) {
                             <Card.Content>
                                 <Card.Header as={Link} to={`/profile/${username}`}>{username}</Card.Header>
                                 <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
-                                <Card.Description>{body}</Card.Description>
+                                <Card.Description style={{fontWeight: 'bold',fontSize: 25, textColor:'black', "overflow":"hidden", "text-overflow": "ellipsis"}}>
+                                    {body}
+                                </Card.Description>
                             </Card.Content>
                             <hr />
                             <Card.Content extra>
@@ -113,9 +115,12 @@ function SinglePost(props) {
                                     {user && user.username === comment.username && (
                                         <DeleteButton postId={id} commentId={comment.id} />
                                     )}
-                                    <Card.Header>{comment.username}</Card.Header>
-                                    <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
-                                    <Card.Description>{comment.body}</Card.Description>
+                                    <Card.Header as={Link} to={`/profile/${comment.username}`}>
+                                        <Image src={comment.userimg} size="avatar"/>
+                                        {comment.username}
+                                    </Card.Header>
+                                    <Card.Meta style={{marginTop:5}}>{moment(comment.createdAt).fromNow()}</Card.Meta>
+                                    <Card.Description style={{fontWeight:"bold"}}>{comment.body}</Card.Description>
                                 </Card.Content>
                             </Card>
                         ))}
@@ -149,6 +154,7 @@ const FETCH_POST_QUERY = gql`
       body
       createdAt
       username
+      userimg
       likeCount
       likes {
         username
@@ -157,6 +163,7 @@ const FETCH_POST_QUERY = gql`
       comments {
         id
         username
+        userimg
         createdAt
         body
       }

@@ -128,6 +128,7 @@ const REGISTER_USER = gql`
       createdAt
       token
       role
+      img
     }
   }
 `;

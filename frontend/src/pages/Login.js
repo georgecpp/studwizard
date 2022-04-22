@@ -92,6 +92,7 @@ const LOGIN_USER = gql`
       createdAt
       token
       role
+      img
     }
   }
 `;

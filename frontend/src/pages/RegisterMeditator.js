@@ -192,6 +192,7 @@ mutation registerMeditator(
     username
     createdAt
     role
+    img
   }
 }
 `;

@@ -11,7 +11,6 @@ function MenuBar() {
   const [activeItem, setActiveItem] = useState(path);
 
   const handleItemClick = (e, { name }) => setActiveItem(name);
-
   const menuBar = user ? (
     <Menu pointing secondary size='massive' color='teal'>
       <Menu.Item
@@ -21,7 +20,7 @@ function MenuBar() {
         onClick={handleItemClick}
         to={`/profile/${user.username}`} >
       <div>
-        <Image src='https://react.semantic-ui.com/images/avatar/large/molly.png' avatar />
+        <Image src={user.img} avatar />
         <span>{user.username}</span>
       </div>
       </Menu.Item>

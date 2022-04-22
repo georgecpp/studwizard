@@ -16,6 +16,7 @@ function Home() {
     var posts;
     if(data) {
         posts = data.getPosts;
+        console.log(posts);
     }
     return (
         <Grid columns={3}>

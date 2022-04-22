@@ -11,6 +11,7 @@ function generateToken (user) {
         id: user.id,
         email: user.email,
         username: user.username,
+        img: user.img,
         role: user.role
     }, SECRET_KEY, {expiresIn: '1h'});
 }
@@ -84,7 +85,7 @@ module.exports = {
                 username: username,
                 password: password,
                 name: name,
-                img: null,
+                img: 'https://cdn-icons-png.flaticon.com/512/1183/1183764.png?w=740',
                 createdAt: new Date().toISOString(),
                 role: 1
             });
@@ -151,7 +152,7 @@ module.exports = {
                    username: username,
                    password: password,
                    name: name,
-                   img: null,
+                   img: 'https://cdn-icons-png.flaticon.com/512/1183/1183773.png?w=740',
                    createdAt: new Date().toISOString(),
                    role: 2,
                    phoneNumber: phoneNumber,
