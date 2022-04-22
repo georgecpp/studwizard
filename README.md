@@ -8,12 +8,12 @@ Full-Stack MERNG web app to post and get meditations from students. Technologies
 ### `git clone https://github.com/georgecpp/studwizard.git`
 - Make sure Node is installed, you'll need npm.
 - Open 2 terminals, one for the backend and one for the frontend, as so:
-- Go to the backend directory, run:
+- On the first terminal, go to the backend directory, run:
 ### `npm install`
 - then
 ### `npm run serve`
 
-- Go the frontend directory, run:
+- On the second terminal, go the frontend directory, run:
 ### `npm install`
 - then
 ### `npm run start`
