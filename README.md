@@ -6,6 +6,7 @@ Full-Stack MERNG web app to post and get meditations from students. Technologies
 
 ## How to use 
 ### `git clone https://github.com/georgecpp/studwizard.git`
+- Open 2 terminals, one for the backend and one for the frontend, as so:
 - Go to the backend directory, run:
 ### `npm install`
 - then
