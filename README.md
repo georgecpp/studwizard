@@ -8,9 +8,11 @@ Full-Stack MERNG web app to post and get meditations from students. Technologies
 
 - In the backend directory, run:
 ### `npm install`
+then
 ### `npm run serve`
 
-- In the frontend directory, you can run:
+- In the frontend directory,run:
 ### `npm install`
+then
 ### `npm run start`
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
