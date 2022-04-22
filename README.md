@@ -5,7 +5,7 @@ Full-Stack MERNG web app to post and get meditations from students. Technologies
 - Node.js (LTS recommended) 
 
 ## How to use 
-
+- ### `git clone https://github.com/georgecpp/studwizard.git`
 - In the backend directory, run:
 ### `npm install`
 - then
