@@ -55,6 +55,19 @@ module.exports = gql`
         educationHistory: educationHistory!
         experience: experience!
     }
+    type UserOrMeditator {
+        id: ID!
+        email: String!
+        username: String!
+        createdAt: String!
+        name: String!
+        img: String!
+        role: String!
+        phoneNumber: String
+        aboutMe: String
+        educationHistory: educationHistory
+        experience: experience
+    }
     input educationHistoryInput {
         lastInstitution: String!
         teachPlacePreference: String!
@@ -78,6 +91,7 @@ module.exports = gql`
         experienceYears: Int!
     }
     type Query {
+        getUser(username: String!): UserOrMeditator
         getPosts: [Post]
         getPost(postId: ID!): Post
     }
