@@ -21,16 +21,19 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Container>
-          <MenuBar />
-          <Route exact path='/' component={Home} />
-          <AuthRoute exact path='/login' component={Login} />
-          <AuthRoute exact path='/register' component={Register} />
-          <AuthRoute exact path='/register/user' component={RegisterUser} />
-          <AuthRoute exact path='/register/meditator' component={RegisterMeditator} />
-          <Route exact path='/profile/:username' component={Profile} />
-          <Route exact path="/posts/:postId" component={SinglePost} />
-        </Container>
+        <div style={{ background: "linear-gradient(#83a4d4 , #b6fbff)" }}>
+          <Container>
+            <MenuBar />
+            <Route exact path='/' component={Home} />
+            <AuthRoute exact path='/login' component={Login} />
+            <AuthRoute exact path='/register' component={Register} />
+            <AuthRoute exact path='/register/user' component={RegisterUser} />
+            <AuthRoute exact path='/register/meditator' component={RegisterMeditator} />
+            <Route exact path='/profile/:username' component={Profile} />
+            <Route exact path="/posts/:postId" component={SinglePost} />
+          </Container>
+        </div>
+
       </Router>
     </AuthProvider>
   );
