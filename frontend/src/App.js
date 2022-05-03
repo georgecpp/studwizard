@@ -21,7 +21,6 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div style={{ background: "linear-gradient(#83a4d4 , #b6fbff)" }}>
           <Container>
             <MenuBar />
             <Route exact path='/' component={Home} />
@@ -32,8 +31,6 @@ function App() {
             <Route exact path='/profile/:username' component={Profile} />
             <Route exact path="/posts/:postId" component={SinglePost} />
           </Container>
-        </div>
-
       </Router>
     </AuthProvider>
   );
