@@ -21,9 +21,9 @@ function PostCard({post: {body, createdAt, id, username, likeCount, commentCount
                 size='mini'
                 src={userimg}
                 />
-                <Card.Header>{username}</Card.Header>
+                <Card.Header style={{"overflow":"hidden", "textOverflow": "ellipsis"}}>{username}</Card.Header>
                 <Card.Meta as={Link} to={`/posts/${id}`}>{moment(createdAt).fromNow()}</Card.Meta>
-                <Card.Description style={{fontWeight: 'bold',fontSize: 25, textColor:'black', marginTop: 25, textAlign: 'center', "overflow":"hidden", "text-overflow": "ellipsis"}}>
+                <Card.Description style={{fontWeight: 'bold',fontSize: 25, textColor:'black', marginTop: 25, textAlign: 'center', "overflow":"hidden", "textOverflow": "ellipsis"}}>
                     {body}
                 </Card.Description>
                 <Card.Description style={{textAlign:"center", marginTop:25}}>

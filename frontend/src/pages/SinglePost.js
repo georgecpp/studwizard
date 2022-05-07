@@ -61,7 +61,7 @@ function SinglePost(props) {
                             <Card.Content>
                                 <Card.Header as={Link} to={`/profile/${username}`}>{username}</Card.Header>
                                 <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
-                                <Card.Description style={{fontWeight: 'bold',fontSize: 25, textColor:'black', "overflow":"hidden", "text-overflow": "ellipsis"}}>
+                                <Card.Description style={{fontWeight: 'bold',fontSize: 25, textColor:'black', "overflow":"hidden", "textOverflow": "ellipsis"}}>
                                     {body}
                                 </Card.Description>
                             </Card.Content>

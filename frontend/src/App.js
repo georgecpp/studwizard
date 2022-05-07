@@ -18,10 +18,11 @@ import RegisterMeditator from './pages/RegisterMeditator';
 import Profile from './pages/Profile';
 
 function App() {
+  document.body.style='background: linear-gradient(#83a4d4 , #b6fbff); height: 100%; margin: 0; background-attachment: fixed;';
+
   return (
     <AuthProvider>
       <Router>
-        <div style={{ background: "linear-gradient(#83a4d4 , #b6fbff)" }}>
           <Container>
             <MenuBar />
             <Route exact path='/' component={Home} />
@@ -32,8 +33,6 @@ function App() {
             <Route exact path='/profile/:username' component={Profile} />
             <Route exact path="/posts/:postId" component={SinglePost} />
           </Container>
-        </div>
-
       </Router>
     </AuthProvider>
   );
