@@ -18,6 +18,8 @@ import RegisterMeditator from './pages/RegisterMeditator';
 import Profile from './pages/Profile';
 
 function App() {
+  document.body.style='background: linear-gradient(#83a4d4 , #b6fbff); height: 100%; margin: 0; background-attachment: fixed;';
+
   return (
     <AuthProvider>
       <Router>
