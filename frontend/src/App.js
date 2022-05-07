@@ -16,9 +16,11 @@ import SinglePost from './pages/SinglePost';
 import RegisterUser from './pages/RegisterUser';
 import RegisterMeditator from './pages/RegisterMeditator';
 import Profile from './pages/Profile';
+import Meditators from './pages/Meditators';
 
 function App() {
-  document.body.style='background: linear-gradient(#83a4d4 , #b6fbff); height: 100%; margin: 0; background-attachment: fixed;';
+
+  document.body.style='background-image: linear-gradient(#83a4d4 , #b6fbff); height:100%; background-attachment: fixed;';
 
   return (
     <AuthProvider>
@@ -32,6 +34,7 @@ function App() {
             <AuthRoute exact path='/register/meditator' component={RegisterMeditator} />
             <Route exact path='/profile/:username' component={Profile} />
             <Route exact path="/posts/:postId" component={SinglePost} />
+            <Route exact path="/meditators" component={Meditators} />
           </Container>
       </Router>
     </AuthProvider>

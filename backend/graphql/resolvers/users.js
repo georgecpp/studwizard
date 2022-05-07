@@ -26,7 +26,16 @@ module.exports = {
             }
             var user = (!userAsUser)? userAsMeditator : userAsUser;
             return user;
-        }
+        },
+        getMeditators: async () => {
+            try {
+                const meditators = await Meditator.find().sort({'experience.score': -1});
+                return meditators;
+            }
+            catch(err) {
+                throw new Error(err);
+            }
+        },
     },
     Mutation: {
         async login(_, { username, password }) {

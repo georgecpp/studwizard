@@ -12,7 +12,7 @@ function MenuBar() {
 
   const handleItemClick = (e, { name }) => setActiveItem(name);
   const menuBar = user ? (
-    <Menu pointing secondary size='massive'>
+    <Menu pointing secondary size='massive' stackable>
       <Menu.Item
         name={user.username}
         as={Link}
@@ -27,6 +27,13 @@ function MenuBar() {
       </Menu.Item>
       <Menu.Menu position='right'>
         <Menu.Item
+          name='meditators'
+          active={activeItem === 'meditators'}
+          onClick={handleItemClick}
+          as={Link}
+          to="/meditators"
+        />
+        <Menu.Item
           name='home'
           active={activeItem === 'home'}
           onClick={handleItemClick}
@@ -36,6 +43,8 @@ function MenuBar() {
         <Menu.Item
             name='logout'
             onClick={logout}
+            as={Link}
+            to="/"
         />
       </Menu.Menu>
     </Menu>

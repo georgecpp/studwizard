@@ -9,8 +9,14 @@ import MyPopup from "../util/MyPopup";
 
 
 function Profile(props) {
-
-    const username = props.match.params.username;
+    console.log(props);
+    let username;
+    if(props.username) {
+        username = props.username
+    }
+    else {
+        username = props.match.params.username;
+    }
     const {user} = useContext(AuthContext);
     const {data} = useQuery(FETCH_USER_QUERY, {
         variables: {
@@ -24,10 +30,10 @@ function Profile(props) {
     else {
         const {id, email, username, createdAt, name, img, role,phoneNumber, aboutMe, educationHistory, experience} = data.getUser;
         profileMarkup = (role == 2) ? (
-            <Card centered>
-                <Image src={img} wrapped ui={false} />
+            <Card centered >
+                <Image as={Link} to ={`/profile/${username}`} src={img} wrapped ui={false} />
                 <Card.Content>
-                <Card.Header>{name} ~ {username}</Card.Header>
+                <Card.Header as={Link} to ={`/profile/${username}`}>{name} ~ {username}</Card.Header>
                 <Card.Meta>Joined {moment(createdAt).fromNow()}</Card.Meta>
                 <Card.Description style={{fontSize:15}}>
                     {aboutMe}
