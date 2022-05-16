@@ -101,6 +101,7 @@ module.exports = gql`
         # register(registerInput: RegisterInput): User!
         registerMeditator(registerMeditatorInput: RegisterMeditatorInput): Meditator!
         registerUser(registerUserInput: RegisterUserInput): User!
+        editUser(username: String!, role: Int!, imgname: String!, img: String!): String!
         login(username:String!, password: String!): User!
         createPost(body: String!): Post!
         deletePost(postId: ID!): String!
