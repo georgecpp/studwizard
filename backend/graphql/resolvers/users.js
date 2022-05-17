@@ -1,10 +1,12 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {UserInputError} = require('apollo-server');
+const { BlobServiceClient } = require("@azure/storage-blob");
 
 const {validateRegisterUserInput, validateLoginInput, validateRegisterMeditatorInput} = require('../../utils/validators');
 const {SECRET_KEY} = require('../../config');
 const {User, Meditator} = require('../../models/User');
+const Post = require('../../models/Post');
 
 function generateToken (user) {
     return jwt.sign({
@@ -38,6 +40,49 @@ module.exports = {
         },
     },
     Mutation: {
+        async editUser(_, {username, role, imgname, img}) {
+   
+            var base64Data = img.substring(img.indexOf(',')+1);
+            var notok = "";
+            require("fs").writeFileSync(imgname, base64Data, 'base64', function(err) {
+                notok = err;
+            });
+
+            if(notok !== "") {
+                return notok;
+            }
+
+            const connStr = "DefaultEndpointsProtocol=https;AccountName=studwizardblob;AccountKey=ENqq2V4hhkULLQka/+dojxAoTrtSUG5eK1dUNtLCZBew6S3J+6q6LG6b05yLeTwtwZmBZCRKpUuOkN1BNdBNKw==;EndpointSuffix=core.windows.net";
+            const blobServiceClient = BlobServiceClient.fromConnectionString(connStr);
+            
+            const containerName = "avatars";         
+            const containerClient = blobServiceClient.getContainerClient(containerName);
+            const blobName = new Date().getTime() + imgname;
+            const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+
+            const uploadBlobResponse = await blockBlobClient.uploadFile(imgname);
+            
+            newimgurl = uploadBlobResponse._response.request.url;
+            if(role == 1) {
+                // handle update for User
+                await User.updateMany({username: username}, {img: newimgurl});
+            }
+            else {
+                // handle update for Meditator
+                await Meditator.updateMany({username: username}, {img: newimgurl});
+            }
+
+            await Post.updateMany({username: username}, {userimg: newimgurl});
+            await Post.updateMany(
+                {},
+                {$set: {'comments.$[element].userimg': newimgurl}},
+                {arrayFilters:[{'element.username': username}]}
+            );
+    
+            require('fs').unlinkSync(imgname);
+
+            return newimgurl;
+        },
         async login(_, { username, password }) {
             const { errors, valid } = validateLoginInput(username, password);
       
