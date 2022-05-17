@@ -19,7 +19,7 @@ function Profile(props) {
         username = props.match.params.username;
     }
 
-    const {user} = useContext(AuthContext);
+    const {user, login, logout} = useContext(AuthContext);
     const {data} = useQuery(FETCH_USER_QUERY, {
         variables: {
             username
@@ -36,6 +36,8 @@ function Profile(props) {
             setCurrrole(0);
             setImgname('');
             setB64img('');
+            window.location.reload()
+            logout();
         },
         variables: {
             username: currusername,
